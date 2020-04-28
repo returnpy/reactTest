@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/html">
+    // call apply bind 的区别
+    // 调用函数指定函数中的this是第一个参数的值，如果你要是指定 undefined null 它会变成 window
+    // bind 会返回一个新的函数，切函数中的 this 指向会是 第一个参数
+    // bind 还可以指定多个参数 参数会优先使用
+    function fn(a, b) {
+    console.log(arguments);
+
+    console.log(a, b, this);
+    }
+
+    const obj = {
+    m: 1
+    }
+
+    fn.call(obj, 3, 5)
+    fn.apply(obj, [3, 5])
+    const bindFn = fn.bind(obj, 8, 9)
+    new bindFn(2, 3)
+  </script>
+
+  <script>
+    // 自定义函数对象的 call
+    Function.prototype.call = function (obj, ...args) {
+      obj = obj || window
+      obj.tempFn = this
+      obj.tempFn(...args)
+      delete obj.tempFn
+    }
+
+    Function.prototype.apply = function (obj, args) {
+      obj = obj || window
+      obj.tempFn = this
+      obj.tempFn(...args)
+      delete obj.tempFn
+    }
+
+    // 自定义函数的 bind 方法
+    Function.prototype.bind = function (obj, ...args1) {
+      return (...args2) => {
+        obj = obj || window
+        obj.tempFn = this
+        obj.tempFn(...args1, ...args2)
+        delete obj.tempFn
+        console.log(obj);
+
+      }
+    }
+
+    function fn(a, b) {
+      console.log(a, b, this);
+    }
+
+    const obj = {
+      m: 1
+    }
+
+    fn.bind(obj)(2, 3)
+  </script>
+</body>
+
+</html>
