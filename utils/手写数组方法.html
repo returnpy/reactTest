@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // map
+      // Array.prototype.map = function (fn) {
+      //   const newArr = []
+      //   this.forEach(item => {
+      //     newArr.push(fn(item))
+      //   });
+      //   return newArr
+      // }
+
+      let arr = [1, 2, 5, 3, 6, 7]
+
+      // console.log(arr.map(item => item +1))
+
+      /**
+       * reduce
+       **/
+      // Array.prototype.reduce = function (fn, total) {
+      //   for (let i = 0; i < this.length; i++) {
+      //     total = fn(total, this[i], i, this)
+      //   }
+      //   return total
+      // }
+
+      // let res = arr.reduce((total, item, index, arr) => {
+      //   return total + (item % 2 ? item : 0)
+      // }, 0)
+      // console.log(res)
+
+      /**
+       * filter
+       **/
+
+      // Array.prototype.filter = function (fn) {
+      //   const newArr= []
+
+      //   for (let index = 0; index < this.length; index++) {
+      //     if (fn(this[index])) {
+      //       newArr.push(this[index])
+      //     }
+      //   }
+
+      //   return newArr
+      // }
+
+      // let res = arr.filter(item => item > 4 && item % 2)
+      // console.log(res)
+
+      /**
+       * find
+       **/
+
+      // Array.prototype.find = function (fn) {
+      //   let num
+      //   for (let index = 0; index < this.length; index++) {
+      //     if (fn(this[index])) {
+      //       return this[index]
+      //     }
+      //   }
+      //   return num
+      // }
+
+      // let res = arr.find(item => item === 6)
+      // console.log(res)
+
+      /**
+       * findIndex
+       **/
+
+      // Array.prototype.findIndex = function (fn) {
+      //   let num
+      //   for (let index = 0; index < this.length; index++) {
+      //     if (fn(this[index])) {
+      //       return index
+      //     }
+      //   }
+      //   return num
+      // }
+
+      // let res = arr.findIndex(item => item === 6)
+      // console.log(res)
+
+      /**
+       * every
+       **/
+
+      // Array.prototype.every = function (fn) {
+      //   for (let index = 0; index < this.length; index++) {
+      //     if (!fn(this[index])) {
+      //       return false
+      //     }
+      //   }
+      //   return true
+      // }
+
+      // let res = arr.every(item => item > 10)
+      // console.log(res)
+      
+      /**
+       * some
+       **/
+
+      // Array.prototype.every = function (fn) {
+      //   for (let index = 0; index < this.length; index++) {
+      //     if (fn(this[index])) {
+      //       return true
+      //     }
+      //   }
+      //   return false
+      // }
+
+      // let res = arr.some(item => item > 5)
+      // console.log(res)
+    </script>
+  </body>
+</html>
