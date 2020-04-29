@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+      class FormComponent extends React.Component {
+        usernameRef = React.createRef()
+        passwordRef = React.createRef()
+
+        handleSubmit = e => {
+          // 组织默认行为
+          e.preventDefault();
+
+          const username = this.usernameRef.current.value
+          const password = this.passwordRef.current.value
+          console.log(username)
+          console.log(password)
+
+          alert('登陆成功！')
+
+        }
+
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>用户名：</label>
+              <input type="text" ref={this.usernameRef} />
+              <label>密码：</label>
+              <input type="password" ref={this.passwordRef} />
+              <button>点我</button>
+            </form>
+          )
+        }
+      }
+
+
+      class FormComponent2 extends React.Component {
+
+        state = {
+          username: '',
+          password: ''
+        }
+
+        handleSubmit = e => {
+          // 组织默认行为
+          e.preventDefault();
+
+        }
+
+        handleChange = (e, type) => {
+          this.setState({
+            [type]: e.target.value
+          })
+        }
+
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>用户名：</label>
+              <input type="text" onChange={e => this.handleChange(e, 'username')} />
+              <label>密码：</label>
+              <input type="password" onChange={e => this.handleChange(e, 'password')} />
+              <button>点我</button>
+            </form>
+          )
+        }
+      }
+
+
+      ReactDOM.render(<FormComponent2 />, document.getElementById('app'))
+
+    </script>
+  </body>
+</html>
