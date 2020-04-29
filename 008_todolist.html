@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app1"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <script></script>
+    <script type="text/babel">
+      // 根组件
+      class App extends React.Component {
+        constructor (props) {
+          super(props)
+
+          this.todolistAdd = this.todolistAdd.bind(this)
+        }
+
+        state = {
+          todolist: ['吃饭', '睡觉', '打豆豆'],
+        }
+
+        todolistAdd (val) {
+          
+          this.setState({
+            todolist: [...this.state.todolist, val]
+          })
+          
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>下面随便添加</h1>
+              <TodoAdd todolistAdd={this.todolistAdd}/>
+              <TodoList todolist={this.state.todolist} />
+            </div>
+          )
+        }
+      }
+      // 添加组件
+      class TodoAdd extends React.Component {
+        constructor (props) {
+          super(props)
+          this.handleChange = this.handleChange.bind(this)
+          this.handleClick = this.handleClick.bind(this)
+        }
+
+        myRefs = React.createRef()
+
+        state = {
+          inputVal: ''
+        }
+
+        handleChange () {
+          const inputVal = this.myRefs.current.value
+
+          this.setState({
+            inputVal
+          })
+        }
+
+        handleClick () {
+          this.props.todolistAdd(this.state.inputVal)
+          this.myRefs.current.value = ''
+        }
+
+        render() {
+          return (
+            <div>
+              <input type="text" onChange={this.handleChange} ref={this.myRefs} />
+              <button onClick={this.handleClick}>add</button>
+            </div>
+          )
+        }
+      }
+
+      // 列表组件
+      class TodoList extends React.Component {
+        render() {
+          return (
+            <ul>
+              {this.props.todolist.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app1"))
+    </script>
+  </body>
+</html>

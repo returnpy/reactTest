@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .big {
+        font-size: 50px;
+      }
+    </style>
   </head>
 
   <body>
@@ -35,7 +40,7 @@
         render () {
           const {isLikeMe} = this.state
           const text = isLikeMe ? '我喜欢你' : '你喜欢我'
-          return <h1 onClick={this.handleClick}>{ text }</h1>
+          return <h1 onClick={this.handleClick} style={{color: '#f00'}} className="big">{ text }</h1>
         }
       }
 

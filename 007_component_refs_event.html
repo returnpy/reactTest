@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app1"></div>
+    <div id="app2"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <script src="./js/prop-types.js"></script>
+
+    <script type="text/babel">
+      class MyComponent extends React.Component {
+        constructor (props) {
+          super(props)
+
+          // 创建 ref 容器
+          this.myRefs = React.createRef()
+          this.handleClick = this.handleClick.bind(this)
+          this.handleChange = this.handleChange.bind(this)
+          this.handleBlur = this.handleChange.bind(this)
+        }
+
+        state = {
+          val: ''
+        }
+
+        handleClick () {
+          const val = this.state.val
+          alert(val)
+        }
+        
+        handleChange (event) {
+          // const {val} = this.state
+          // this.setState({
+          //   val: this.refs.input1Ref.value
+          // })
+
+          console.log(event)
+          
+        }
+
+        handleBlur (event, msg) {
+          console.log(event)
+          console.log(msg)
+        }
+
+        render () {
+          return (
+            <div>
+              <input type="text" ref={this.myRefs} onChange={this.handleChange} />
+              <button onClick={this.handleClick}>点我</button>
+              <hr />
+              <input type="text" onBlur={() => this.handleBlur('msg')} />
+              <input type="text" onBlur={this.handleBlur.bind(this, 'msg')} />
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<MyComponent />, document.getElementById('app1'))
+    </script>
+  </body>
+</html>
